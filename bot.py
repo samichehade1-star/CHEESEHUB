@@ -266,11 +266,13 @@ async def dick(ctx, member: discord.Member = None):
     else:
         message = "Tell me you like KFC without telling me you like KFC"
 
-    filled = round(value / 8 * 10)
-    bar = "🟦" * filled + "⬜" * (10 - filled)
+    if value == 0:
+        bar = "()"
+    else:
+        bar = "8" + "=" * value + "D"
 
     embed = discord.Embed(title="📏 Dick Meter", color=0x5865F2)
-    embed.add_field(name=target.display_name, value=f"{bar} **{value} inches**", inline=False)
+    embed.add_field(name=target.display_name, value=f"`{bar}` **{value} inches**", inline=False)
     embed.add_field(name="Verdict", value=message, inline=False)
     embed.set_thumbnail(url=target.display_avatar.url)
     await ctx.send(embed=embed)
