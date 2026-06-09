@@ -284,11 +284,11 @@ async def roast(ctx, member: discord.Member = None):
 
     # Add your roast lines to this list!
     roasts = [
-        "YOUR ROAST LINE HERE",
-        "YOUR ROAST LINE HERE",
-        "YOUR ROAST LINE HERE",
-        "YOUR ROAST LINE HERE",
-        "YOUR ROAST LINE HERE",
+        "You look like you use Furry or Milkygay",
+        "I’m sorry your mom never put your artwork on the wall as a kid.",
+        "Your logic would lose to a Magic 8 Ball.",
+        "You built like a windshield wiper.",
+        "You remind me of Sora",
     ]
 
     embed = discord.Embed(
@@ -303,7 +303,7 @@ async def roast(ctx, member: discord.Member = None):
 # ── Word Trigger (fill in your own response!) ─────────────────────────────────
 # To add a trigger: put the word in TRIGGER_WORD and your reply in TRIGGER_RESPONSE
 TRIGGER_WORD = "Nigga"
-TRIGGER_RESPONSE = "Who you calling a nigga. I'll show you a real Nigger"
+TRIGGER_RESPONSE = "Who you calling a nigga. I'll show you a real Nigga"
 
 
 @bot.event
