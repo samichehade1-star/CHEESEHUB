@@ -104,6 +104,171 @@ GAY_MESSAGES = [
     (range(100, 101),"100%! Certified gay icon."),
 ]
 
+# ── DBD & Fun Data ─────────────────────────────────────────────────────────────
+MONKEY_ABILITIES = [
+    "Throws bananas with deadly accuracy.",
+    "Can smell bananas from 3 miles away.",
+    "Climbs walls during arguments.",
+    "Communicates only through monkey noises.",
+    "Stole the killer's flashlight.",
+    "Has permanent Bloodlust III.",
+    "Can instantly identify ripe bananas.",
+    "Escapes responsibilities by swinging away.",
+    "Immune to skill checks.",
+    "Invented banana technology.",
+    "Can open any locker in under 2 seconds.",
+    "Has a PhD in monkey business.",
+    "Can hear a banana peel from across the map.",
+    "Runs at 110% movement speed.",
+    "Can summon emergency bananas.",
+    "Has been banned from 12 zoos.",
+    "Can swing from invisible vines.",
+    "Knows where all the bananas are hidden.",
+    "Can dodge accountability with ease.",
+    "Has mastered advanced ape combat.",
+]
+
+MONKEY_RANKS = [
+    "Tiny Monkey",
+    "Banana Enthusiast",
+    "Advanced Monkey",
+    "Jungle Warrior",
+    "Banana Overlord",
+    "Supreme Ape",
+    "Monkey King",
+    "Legendary Banana Being",
+]
+
+MONKEY_STATUS = [
+    "Threat Level: Low",
+    "Threat Level: Moderate",
+    "Threat Level: High",
+    "Threat Level: Critical",
+    "Threat Level: Evacuate the Server",
+    "Threat Level: Government Notified",
+    "Threat Level: Banana Emergency",
+    "Threat Level: Containment Failed",
+]
+
+LOOP_FAILS = [
+    "Ran into a wall while looking behind.",
+    "Fast vaulted directly into the killer.",
+    "Thought the pallet was still there.",
+    "Missed every window.",
+    "Accidentally cornered themselves.",
+    "Stopped to teabag and got hit.",
+    "Forgot where the exit gate was.",
+    "Tried to heal mid chase.",
+    "Entered a locker instead of vaulting.",
+    "Got stuck on a tree.",
+    "Accidentally led the killer to the entire team.",
+    "Looked at chat instead of the screen.",
+    "Forgot they were injured.",
+    "Ran straight into a dead zone.",
+    "Mistook the killer for a teammate.",
+]
+
+LOOP_WINS = [
+    "Looped the killer for 5 generators.",
+    "Made the killer rage quit.",
+    "Forced Bloodlust III and still escaped.",
+    "Escaped with a perfectly timed Dead Hard.",
+    "Made the killer lose track three times.",
+    "Used Shack like a professional.",
+    "Made the killer question their life choices.",
+    "Looped so hard the killer became friendly.",
+    "Successfully wasted the killer's entire match.",
+    "Got accused of cheating.",
+    "Became the main character.",
+    "Looped until the killer disconnected.",
+    "Created a YouTube montage mid chase.",
+    "Turned the killer into a spectator.",
+    "Unlocked Ultra Instinct.",
+]
+
+LOOP_REWARDS = [
+    "Reward: Facecamped.",
+    "Reward: Tunneled immediately.",
+    "Reward: Received angry messages.",
+    "Reward: Killer disconnected.",
+    "Reward: Killer switched to Nurse next game.",
+    "Reward: Killer uninstalled.",
+    "Reward: Teammates still called them useless.",
+    "Reward: Earned bragging rights.",
+    "Reward: Killer filed a complaint.",
+    "Reward: Got sacrificed anyway.",
+]
+
+SKILL_CHECKS = [
+    "Great Skill Check! +300 points.",
+    "Good Skill Check.",
+    "Missed the Skill Check.",
+    "Exploded the generator.",
+    "Accidentally alerted the killer.",
+    "Hit the smallest Great Skill Check imaginable.",
+    "Missed so badly the gen lost 20%.",
+    "Panicked and let go of M1.",
+    "Closed their eyes and somehow hit Great.",
+    "Broke the laws of probability.",
+]
+
+LOCKER_EVENTS = [
+    "Successfully hid from the killer.",
+    "Found Dwight already inside.",
+    "Entered Narnia.",
+    "Immediately got grabbed.",
+    "Found a banana.",
+    "Discovered a secret basement.",
+    "Accidentally entered the wrong match.",
+    "Found the killer hiding inside.",
+    "Stayed in the locker for the entire game.",
+    "Achieved maximum cowardice.",
+]
+
+BRAIN_RESULTS = [
+    "1 brain cell detected.",
+    "2 brain cells fighting for third place.",
+    "Loading brain cells...",
+    "Brain cells not found.",
+    "999 IQ detected.",
+    "Brain operating at 300%.",
+    "Single brain cell currently overheating.",
+    "Brain privileges revoked.",
+    "Certified genius.",
+    "Thinking is optional today.",
+]
+
+SOCIAL_EVENTS = [
+    "+15 for saying hello.",
+    "-50 for pinging everyone.",
+    "+25 for helping a teammate.",
+    "-100 for missing skill checks.",
+    "+10 for being funny.",
+    "-75 for saying 'ez'.",
+    "+50 for clutching endgame.",
+    "-150 for sandbagging.",
+    "+30 for touching grass.",
+    "-200 for being online at 4 AM.",
+]
+
+LOOT_ITEMS = [
+    "Legendary Banana",
+    "Broken Keyboard",
+    "RTX 9090 (Cardboard Edition)",
+    "Killer Shack Key",
+    "Half-Eaten Banana",
+    "Invisible Flashlight",
+    "Golden Locker",
+    "Bloodpoint Coupon",
+    "Dwight's Missing Brain Cell",
+    "Unlimited Sprint Burst",
+    "Common Rock",
+    "CEO of Rockland",
+    "Admin Powers",
+    "Expired Medkit",
+    "Nurse's Contact Lenses",
+]
+
 # ── Events ─────────────────────────────────────────────────────────────────────
 @bot.event
 async def on_ready():
@@ -133,10 +298,17 @@ async def help_cmd(ctx):
     embed.add_field(
         name="🎮 Fun",
         value=(
-            "`!8ball <question>` — Ask the magic 8-ball\n"
-            "`!gay [@user]` — Check someone's gay % (RNG)\n"
-            "`!dick [@user]` — You know what this does 📏\n"
-            "`!roast [@user]` — Roast someone 🔥"
+            "`?8ball <question>` — Ask the magic 8-ball\n"
+            "`?gay [@user]` — Check someone's gay %\n"
+            "`?dick [@user]` — Dick meter\n"
+            "`?roast [@user]` — Roast someone\n"
+            "`?monkey [@user]` — Monkey rating\n"
+            "`?loop [@user]` — DBD loop outcome\n"
+            "`?skillcheck [@user]` — DBD skill check\n"
+            "`?locker [@user]` — DBD locker event\n"
+            "`?braincell [@user]` — Brain cell count\n"
+            "`?socialcredit [@user]` — Social credit\n"
+            "`?lootbox` — Open a lootbox"
         ),
         inline=False,
     )
@@ -295,6 +467,85 @@ async def roast(ctx, member: discord.Member = None):
         color=0xE74C3C,
     )
     embed.set_footer(text=f"Roasted by {ctx.author.display_name}")
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="monkey")
+async def monkey(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    rank = random.choice(MONKEY_RANKS)
+    ability = random.choice(MONKEY_ABILITIES)
+    status = random.choice(MONKEY_STATUS)
+    embed = discord.Embed(title="Monkey Rating", description=f"**{target.display_name}** has been analyzed...", color=0x8B4513)
+    embed.add_field(name="Rank", value=rank, inline=False)
+    embed.add_field(name="Special Ability", value=ability, inline=False)
+    embed.add_field(name="Status", value=status, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="loop")
+async def loop(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    win = random.choice([True, False])
+    outcome = random.choice(LOOP_WINS) if win else random.choice(LOOP_FAILS)
+    reward = random.choice(LOOP_REWARDS)
+    embed = discord.Embed(
+        title="DBD Loop Simulator",
+        description=f"**{target.display_name}** entered a chase...",
+        color=0x2ECC71 if win else 0xE74C3C,
+    )
+    embed.add_field(name="Outcome", value=outcome, inline=False)
+    embed.add_field(name="Result", value=reward, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="skillcheck")
+async def skillcheck(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    result = random.choice(SKILL_CHECKS)
+    embed = discord.Embed(title="Skill Check!", description=f"**{target.display_name}** attempted a skill check...", color=0xF39C12)
+    embed.add_field(name="Result", value=result, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="locker")
+async def locker(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    event = random.choice(LOCKER_EVENTS)
+    embed = discord.Embed(title="Locker Event", description=f"**{target.display_name}** entered a locker...", color=0x3498DB)
+    embed.add_field(name="What happened?", value=event, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="braincell")
+async def braincell(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    result = random.choice(BRAIN_RESULTS)
+    embed = discord.Embed(title="Brain Cell Scan", description=f"Scanning **{target.display_name}**...", color=0x9B59B6)
+    embed.add_field(name="Result", value=result, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="socialcredit")
+async def socialcredit(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    event = random.choice(SOCIAL_EVENTS)
+    embed = discord.Embed(title="Social Credit System", description=f"**{target.display_name}**'s social credit has been updated.", color=0xE74C3C)
+    embed.add_field(name="Update", value=event, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="lootbox")
+async def lootbox(ctx):
+    items = random.sample(LOOT_ITEMS, 3)
+    embed = discord.Embed(title="Lootbox Opened!", description=f"**{ctx.author.display_name}** opened a lootbox...", color=0xF1C40F)
+    embed.add_field(name="You received", value="\n".join(f"• {item}" for item in items), inline=False)
     await ctx.send(embed=embed)
 
 
