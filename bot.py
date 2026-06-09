@@ -131,14 +131,14 @@ MONKEY_ABILITIES = [
 ]
 
 MONKEY_RANKS = [
-    "Tiny Monkey",
+    "Mini Nigga",
     "Banana Enthusiast",
-    "Advanced Monkey",
+    "Lvl 3 Monkey",
     "Jungle Warrior",
-    "Banana Overlord",
-    "Supreme Ape",
-    "Monkey King",
-    "Legendary Banana Being",
+    "Kool Aid enthusiast",
+    "KFC lover",
+    "Low battery smoke alarm",
+    "Gigga Nigga",
 ]
 
 MONKEY_STATUS = [
@@ -154,9 +154,9 @@ MONKEY_STATUS = [
 
 LOOP_FAILS = [
     "Ran into a wall while looking behind.",
-    "Fast vaulted directly into the killer.",
+    "You are license banned",
     "Thought the pallet was still there.",
-    "Missed every window.",
+    "Downloaded Milkyway Malware",
     "Accidentally cornered themselves.",
     "Stopped to teabag and got hit.",
     "Forgot where the exit gate was.",
@@ -164,7 +164,7 @@ LOOP_FAILS = [
     "Entered a locker instead of vaulting.",
     "Got stuck on a tree.",
     "Accidentally led the killer to the entire team.",
-    "Looked at chat instead of the screen.",
+    "Used Fury and died",
     "Forgot they were injured.",
     "Ran straight into a dead zone.",
     "Mistook the killer for a teammate.",
@@ -173,7 +173,7 @@ LOOP_FAILS = [
 LOOP_WINS = [
     "Looped the killer for 5 generators.",
     "Made the killer rage quit.",
-    "Forced Bloodlust III and still escaped.",
+    "ALT + F4",
     "Escaped with a perfectly timed Dead Hard.",
     "Made the killer lose track three times.",
     "Used Shack like a professional.",
@@ -181,7 +181,7 @@ LOOP_WINS = [
     "Looped so hard the killer became friendly.",
     "Successfully wasted the killer's entire match.",
     "Got accused of cheating.",
-    "Became the main character.",
+    "Got VAC Banned",
     "Looped until the killer disconnected.",
     "Created a YouTube montage mid chase.",
     "Turned the killer into a spectator.",
@@ -191,38 +191,38 @@ LOOP_WINS = [
 LOOP_REWARDS = [
     "Reward: Facecamped.",
     "Reward: Tunneled immediately.",
-    "Reward: Received angry messages.",
+    "Reward: Received Femboy Pics from SYAZ",
     "Reward: Killer disconnected.",
-    "Reward: Killer switched to Nurse next game.",
+    "Reward: 4 Slaves, poorly fed.",
     "Reward: Killer uninstalled.",
-    "Reward: Teammates still called them useless.",
+    "Reward: Tiddy Pics",
     "Reward: Earned bragging rights.",
-    "Reward: Killer filed a complaint.",
-    "Reward: Got sacrificed anyway.",
+    "NO MORE FREE KEYS. AND THATS THAT",
+    "Reward: Chlamydia",
 ]
 
 SKILL_CHECKS = [
     "Great Skill Check! +300 points.",
-    "Good Skill Check.",
+    "Nigga turn on auto skill check monkey.",
     "Missed the Skill Check.",
     "Exploded the generator.",
     "Accidentally alerted the killer.",
-    "Hit the smallest Great Skill Check imaginable.",
+    "Missed because you're black",
     "Missed so badly the gen lost 20%.",
-    "Panicked and let go of M1.",
+    "Skill Issue...",
     "Closed their eyes and somehow hit Great.",
     "Broke the laws of probability.",
 ]
 
 LOCKER_EVENTS = [
-    "Successfully hid from the killer.",
+    "Tried to Sabo the hook with Remote interaction and looked like an idiot",
     "Found Dwight already inside.",
     "Entered Narnia.",
     "Immediately got grabbed.",
     "Found a banana.",
     "Discovered a secret basement.",
-    "Accidentally entered the wrong match.",
-    "Found the killer hiding inside.",
+    "Instant Escaped",
+    "Came out gay",
     "Stayed in the locker for the entire game.",
     "Achieved maximum cowardice.",
 ]
@@ -236,17 +236,17 @@ BRAIN_RESULTS = [
     "Brain operating at 300%.",
     "Single brain cell currently overheating.",
     "Brain privileges revoked.",
-    "Certified genius.",
-    "Thinking is optional today.",
+    "Somalian Brain",
+    "You are RETARDED",
 ]
 
 SOCIAL_EVENTS = [
-    "+15 for saying hello.",
+    "-1500 for being black.",
     "-50 for pinging everyone.",
-    "+25 for helping a teammate.",
+    "-100 for donating to Africa.",
     "-100 for missing skill checks.",
     "+10 for being funny.",
-    "-75 for saying 'ez'.",
+    "+75 for saying 'gg ez monkey'.",
     "+50 for clutching endgame.",
     "-150 for sandbagging.",
     "+30 for touching grass.",
@@ -265,17 +265,17 @@ LOOT_ITEMS = [
     "Dwight's Missing Brain Cell",
     "Unlimited Sprint Burst",
     "Common Rock",
-    "CEO of Rockland",
+    "CEO of Niggas",
     "Admin Powers",
     "Expired Medkit",
-    "Nurse's Contact Lenses",
+    "2 Black Slaves",
 ]
 
 # ── Events ─────────────────────────────────────────────────────────────────────
 @bot.event
 async def on_ready():
     print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
-    await bot.change_presence(activity=discord.Game(name="!help | Serving cheese 🧀"))
+    await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
 
 
 # ── Commands ───────────────────────────────────────────────────────────────────
