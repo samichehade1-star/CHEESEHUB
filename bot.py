@@ -1,9 +1,10 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import random
 import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import aiohttp
 
 # ── Bot Setup ──────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -276,6 +277,16 @@ LOOT_ITEMS = [
 async def on_ready():
     print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
     await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
+    keep_alive.start()
+
+
+@tasks.loop(minutes=5)
+async def keep_alive():
+    try:
+        async with aiohttp.ClientSession() as session:
+            await session.get("https://cheesehub.onrender.com")
+    except Exception:
+        pass
 
 
 # ── Commands ───────────────────────────────────────────────────────────────────
