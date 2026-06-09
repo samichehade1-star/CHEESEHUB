@@ -7,7 +7,7 @@ import os
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
+bot = commands.Bot(command_prefix="?", intents=intents, help_command=None)
 
 # ── Data ───────────────────────────────────────────────────────────────────────
 CHEESE_FACTS = [
@@ -122,11 +122,11 @@ async def help_cmd(ctx):
     embed.add_field(
         name="🧀 Cheese",
         value=(
-            "`!cheese` — Random cheese fact\n"
-            "`!joke` — Cheesy joke\n"
-            "`!trivia` — Start a cheese trivia question\n"
-            "`!hint` — Get a hint for the active trivia\n"
-            "`!skip` — Skip the current trivia question"
+            "`?cheese` — Random cheese fact\n"
+            "`?joke` — Cheesy joke\n"
+            "`?trivia` — Start a cheese trivia question\n"
+            "`?hint` — Get a hint for the active trivia\n"
+            "`?skip` — Skip the current trivia question"
         ),
         inline=False,
     )
@@ -142,7 +142,7 @@ async def help_cmd(ctx):
     )
     embed.add_field(
         name="ℹ️ Info",
-        value="`!help` — Show this menu\n`!ping` — Check bot latency",
+        value="`?help` — Show this menu\n`?ping` — Check bot latency",
         inline=False,
     )
     embed.set_footer(text="Made with 🧀 | Cheesehub v1.0")
@@ -181,7 +181,7 @@ async def cheese_joke(ctx):
 async def trivia(ctx):
     if ctx.channel.id in active_trivia:
         q = active_trivia[ctx.channel.id]["q"]
-        await ctx.send(f"⚠️ A trivia is already active! **{q}**\nUse `!hint` or `!skip`.")
+        await ctx.send(f"⚠️ A trivia is already active! **{q}**\nUse `?hint` or `?skip`.")
         return
 
     question = random.choice(TRIVIA_QUESTIONS)
@@ -199,7 +199,7 @@ async def trivia(ctx):
 @bot.command(name="hint")
 async def hint(ctx):
     if ctx.channel.id not in active_trivia:
-        await ctx.send("❌ No active trivia! Start one with `!trivia`.")
+        await ctx.send("❌ No active trivia! Start one with `?trivia`.")
         return
     hint_text = active_trivia[ctx.channel.id]["hint"]
     await ctx.send(f"💡 **Hint:** {hint_text}")
@@ -217,7 +217,7 @@ async def skip(ctx):
 @bot.command(name="8ball")
 async def eightball(ctx, *, question: str = None):
     if not question:
-        await ctx.send("❓ Ask me a question! e.g. `!8ball Will I ever be rich?`")
+        await ctx.send("❓ Ask me a question! e.g. `?8ball Will I ever be rich?`")
         return
     emoji, response = random.choice(EIGHTBALL_RESPONSES)
     embed = discord.Embed(title="🎱 Magic 8-Ball", color=0x2B2D31)
