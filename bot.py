@@ -581,7 +581,12 @@ async def on_message(message):
             await message.delete()
         except discord.Forbidden:
             pass
-        await message.channel.send(f"{message.author.mention} {TRIGGER_RESPONSE_3}")
+        embed = discord.Embed(
+            description=f"{message.author.mention} {TRIGGER_RESPONSE_3}",
+            color=0xFF0000,
+        )
+        embed.set_image(url="https://media.tenor.com/sSHMBmOqNgMAAAAd/gorlock-gorlockthedestroyer.gif")
+        await message.channel.send(embed=embed)
 
     # Check trivia answers
     if message.channel.id in active_trivia:
