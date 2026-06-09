@@ -134,7 +134,7 @@ async def help_cmd(ctx):
         name="🎮 Fun",
         value=(
             "`!8ball <question>` — Ask the magic 8-ball\n"
-            "`!gaymeter [@user]` — Check someone's gay % (RNG)\n"
+            "`!gay [@user]` — Check someone's gay % (RNG)\n"
             "`!dick [@user]` — You know what this does 📏\n"
             "`!roast [@user]` — Roast someone 🔥"
         ),
@@ -227,8 +227,8 @@ async def eightball(ctx, *, question: str = None):
     await ctx.send(embed=embed)
 
 
-@bot.command(name="gaymeter")
-async def gaymeter(ctx, member: discord.Member = None):
+@bot.command(name="gay")
+async def gay(ctx, member: discord.Member = None):
     target = member or ctx.author
     value = random.randint(0, 100)
     message = next(msg for r, msg in GAY_MESSAGES if value in r)
