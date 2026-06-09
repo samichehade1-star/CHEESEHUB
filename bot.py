@@ -553,11 +553,12 @@ async def lootbox(ctx):
 
 # ── Word Trigger (fill in your own response!) ─────────────────────────────────
 # To add a trigger: put the word in TRIGGER_WORD and your reply in TRIGGER_RESPONSE
-TRIGGER_WORD = "Nigga"
+TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
 TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "explot", "cheater", "hacker", "hackers", "cheaters"]
 TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed monkey. Its just reshade powered by the great Visneya.xyz & Nyxia.cc\n\nPS: You Jubtas?"
+TRIGGER_RESPONSE_2A = "Its just cheese\n\nPS: You Jubtas?"
 
 
 @bot.event
@@ -566,11 +567,11 @@ async def on_message(message):
         return
 
     # Word trigger — fires when someone's message contains TRIGGER_WORD
-    if TRIGGER_WORD.lower() in message.content.lower():
-        await message.channel.send(TRIGGER_RESPONSE)
+    if any(word in message.content.lower() for word in TRIGGER_WORDS_1):
+        await message.channel.send(f"{message.author.mention} {TRIGGER_RESPONSE}")
 
     if any(word in message.content.lower() for word in TRIGGER_WORDS_2):
-        await message.channel.send(TRIGGER_RESPONSE_2)
+        await message.channel.send(f"{message.author.mention} {random.choice([TRIGGER_RESPONSE_2, TRIGGER_RESPONSE_2A])}")
 
     # Check trivia answers
     if message.channel.id in active_trivia:
