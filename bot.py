@@ -254,7 +254,7 @@ async def dick(ctx, member: discord.Member = None):
     if value == 0:
         message = "Congrats on your sex change operation. It was a success Nigga"
     elif value <= 2:
-        message = "Holy smokes its Kim Jung Un"
+        message = "Holy smokes its Kim Jong Un"
     elif value <= 4:
         message = "My pinky finger can wrap around it"
     elif value <= 6:
@@ -301,7 +301,7 @@ async def roast(ctx, member: discord.Member = None):
 # ── Word Trigger (fill in your own response!) ─────────────────────────────────
 # To add a trigger: put the word in TRIGGER_WORD and your reply in TRIGGER_RESPONSE
 TRIGGER_WORD = "Nigga"
-TRIGGER_RESPONSE = "Who you calling a nigga. I'll show you a real Nigga"
+TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
 
 @bot.event
