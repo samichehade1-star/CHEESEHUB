@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import random
 import os
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # ── Bot Setup ──────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -554,6 +556,9 @@ async def lootbox(ctx):
 TRIGGER_WORD = "Nigga"
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
+TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "explot", "cheater", "hacker", "hackers", "cheaters"]
+TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed monkey. Its just reshade powered by the great Visneya.xyz & Nyxia.cc\n\nPS: You Jubtas?"
+
 
 @bot.event
 async def on_message(message):
@@ -563,6 +568,9 @@ async def on_message(message):
     # Word trigger — fires when someone's message contains TRIGGER_WORD
     if TRIGGER_WORD.lower() in message.content.lower():
         await message.channel.send(TRIGGER_RESPONSE)
+
+    if any(word in message.content.lower() for word in TRIGGER_WORDS_2):
+        await message.channel.send(TRIGGER_RESPONSE_2)
 
     # Check trivia answers
     if message.channel.id in active_trivia:
@@ -581,6 +589,21 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
+
+# ── Keep-alive web server for Render ──────────────────────────────────────────
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    def log_message(self, format, *args):
+        pass
+
+def run_server():
+    server = HTTPServer(("0.0.0.0", 8080), HealthHandler)
+    server.serve_forever()
+
+threading.Thread(target=run_server, daemon=True).start()
 
 # ── Run ────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
