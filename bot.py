@@ -585,8 +585,11 @@ async def on_message(message):
             description=f"{message.author.mention} {TRIGGER_RESPONSE_3}",
             color=0xFF0000,
         )
+        embed.set_image(url="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTdndTRiZzJpNXc4YnBwancwZ2hxdmF4dTBkNWtrdWJyZ2wzd2FnMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IUkDQZP2AJyxU3cXBn/giphy.gif")
         await message.channel.send(embed=embed)
-        await message.channel.send("https://media1.tenor.com/m/0HhSz2OmR6kAAAAd/gorlock-gorlockthedestroyer.gif")
+        embed2 = discord.Embed(color=0xFF0000)
+        embed2.set_image(url="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXRnemhja3NmbXd5aDQ0MnFhcm9lMW1jeGZ5NWlxYnJvazg2bTVpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CWsz3htAnOa4ScUHyE/giphy.gif")
+        await message.channel.send(embed=embed2)
 
     # Check trivia answers
     if message.channel.id in active_trivia:
