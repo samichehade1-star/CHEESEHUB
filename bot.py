@@ -94,14 +94,14 @@ EIGHTBALL_RESPONSES = [
 ]
 
 GAY_MESSAGES = [
-    (range(0, 11),   "Straighter than a ruler. 📏"),
-    (range(11, 26),  "Curious? Maybe just cheese-curious. 🧀"),
-    (range(26, 41),  "A little fruity, nothing wrong with that. 🍓"),
-    (range(41, 56),  "Right in the middle — a true enigma. 🤷"),
-    (range(56, 71),  "Leaning into it. The rainbow is calling. 🌈"),
-    (range(71, 86),  "Absolutely fabulous. 💅"),
-    (range(86, 100), "Off the charts! You ARE the rainbow. 🏳️‍🌈✨"),
-    (range(100, 101),"100%! Certified gay icon. 👑🌈"),
+    (range(0, 11),   "Straighter than a ruler."),
+    (range(11, 26),  "Curious? Maybe just cheese-curious."),
+    (range(26, 41),  "A little fruity, nothing wrong with that."),
+    (range(41, 56),  "Right in the middle — a true enigma."),
+    (range(56, 71),  "Leaning into it. The rainbow is calling."),
+    (range(71, 86),  "Absolutely fabulous."),
+    (range(86, 100), "Off the charts! You ARE the rainbow."),
+    (range(100, 101),"100%! Certified gay icon."),
 ]
 
 # ── Events ─────────────────────────────────────────────────────────────────────
@@ -232,14 +232,12 @@ async def gay(ctx, member: discord.Member = None):
     target = member or ctx.author
     value = random.randint(0, 100)
     message = next(msg for r, msg in GAY_MESSAGES if value in r)
-    filled = round(value / 10)
-    bar = "🟨" * filled + "⬜" * (10 - filled)
     embed = discord.Embed(
-        title="🌈 Gay Meter",
+        title="Gay Meter",
         description=f"**{target.display_name}** has been analyzed...",
         color=0xFF69B4,
     )
-    embed.add_field(name="Result", value=f"{bar} **{value}%**", inline=False)
+    embed.add_field(name="Result", value=f"**{value}%**", inline=False)
     embed.add_field(name="Verdict", value=message, inline=False)
     embed.set_thumbnail(url=target.display_avatar.url)
     await ctx.send(embed=embed)
