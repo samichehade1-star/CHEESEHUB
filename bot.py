@@ -585,8 +585,8 @@ async def on_message(message):
             description=f"{message.author.mention} {TRIGGER_RESPONSE_3}",
             color=0xFF0000,
         )
-        embed.set_image(url="https://media1.tenor.com/m/0HhSz2OmR6kAAAAd/gorlock-gorlockthedestroyer.gif")
         await message.channel.send(embed=embed)
+        await message.channel.send("https://media1.tenor.com/m/0HhSz2OmR6kAAAAd/gorlock-gorlockthedestroyer.gif")
 
     # Check trivia answers
     if message.channel.id in active_trivia:
