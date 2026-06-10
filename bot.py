@@ -159,7 +159,7 @@ LOOP_REWARDS = [
     "Reward: Chlamydia from the trap house.",
     "Reward: Anal rape by Shaquille O'Neal in the basement.",
     "Reward: Got hate mail calling you a n***** monkey.",
-    "Reward: Your mom walked in during the worst moment.",
+    "Reward: Your mom walked in while gooning to naked bubba mod",
     "Reward: Permanent broke nigga status.",
     "Reward: The whole block called you retarded.",
     "Reward: Free trip to the hospital with no insurance.",
@@ -218,7 +218,7 @@ SOCIAL_EVENTS = [
     "-150 for snitching on the crew.",
     "+30 for touching grass (first time in years).",
     "-200 for being online at 4 AM instead of getting a job.",
-    "-300 for saying the N-word with the hard R.",
+    "+300 for saying the N-word with the hard R.",
     "+25 for bringing banana offerings.",
 ]
 
