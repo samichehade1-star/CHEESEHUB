@@ -6,13 +6,10 @@ import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import aiohttp
 
-# ── Bot Setup ──────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
 intents.message_content = True
-
 bot = commands.Bot(command_prefix="?", intents=intents, help_command=None)
 
-# ── Data ───────────────────────────────────────────────────────────────────────
 CHEESE_FACTS = [
     "There are over 1,800 distinct varieties of cheese in the world! 🧀",
     "Cheddar is the world's most popular cheese, accounting for over 50% of all cheese sold in the UK.",
@@ -244,38 +241,36 @@ LOOT_ITEMS = [
 ]
 
 ESEX_GIFS = [
-    "https://i.imgur.com/ICMExVi.gif",
-    "https://i.imgur.com/UyYdOqc.gif",
-    "https://i.imgur.com/xiAmLwQ.gif",
-    "https://i.imgur.com/mMSMbB3.gif",
-    "https://i.imgur.com/wTgr3sw.gif",
-    "https://i.imgur.com/k6HBxd7.gif",
-    "https://i.imgur.com/uBIldRR.gif",
-    "https://i.imgur.com/hIJsJ3i.gif",
-    "https://i.imgur.com/JnOMr20.gif",
-    "https://i.imgur.com/I5scd3x.gif",
-    "https://i.imgur.com/V6LceLE.gif",
-    "https://i.imgur.com/77nVlxq.gif",
-    "https://i.imgur.com/4OBKFOm.gif",
-    "https://i.imgur.com/nkbf9ot.gif",
-    "https://i.imgur.com/MCEvM59.gif",
-    "https://i.imgur.com/XxEX0Qs.gif",
-    "https://i.imgur.com/ekQgnSk.gif",
-    "https://i.imgur.com/Ab39FAa.gif",
-    "https://i.imgur.com/2Vvd5vB.gif",
-    "https://i.imgur.com/DUEY4nH.gif",
-    "https://i.imgur.com/6yFCLDj.gif",
-    "https://i.imgur.com/p56qVYb.gif",
-    "https://i.imgur.com/BVMuWP2.gif",
-    "https://i.imgur.com/fEs1vzM.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128849284370452/ahegao-babe.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128849678368769/ahegao-delfine.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128850001465354/nadinebreaty-nadine.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128850471358484/egirl-venom.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128850777276497/wink-flirty.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128851079401532/mods-vips.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128851444437012/ahegao-blonde.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128851813400626/ahegao-tongue.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128852111200376/mouth-open-smiling.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128852404932770/ahegao.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128931203321898/ahegao-emoji-girl.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128931530342511/minja-sokeripupu.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128931962359868/caroline-yonson-emiru.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128932448895077/emiru-bounce-emiru-excited.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128932817862946/emiru-emi.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128933279498331/egirl-egirls.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128933883346994/egirl-963741.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128934411960422/cute-girl-tik-tok.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128934818549780/e-girl.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128935233781851/minja-mikkeli.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128940262883348/walking-green.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128940548231178/flirty.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128940904480768/yaoyao2067-yaoyao563.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128941189955645/hayoung-v-sexy.gif",
+    "https://cdn.discordapp.com/attachments/1421236627748950206/1514128941479231548/1.gif",
 ]
 
 def get_random_esex():
-    if not ESEX_GIFS:
-        return None
-    return random.choice(ESEX_GIFS)
+    return random.choice(ESEX_GIFS) if ESEX_GIFS else None
 
-# ── Keep-alive task (defined before on_ready) ──────────────────────────────────
 @tasks.loop(minutes=5)
 async def keep_alive():
     try:
@@ -284,27 +279,24 @@ async def keep_alive():
     except Exception:
         pass
 
-# ── Events ─────────────────────────────────────────────────────────────────────
 @bot.event
 async def on_ready():
     print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
     await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
     keep_alive.start()
 
-# ── Commands ───────────────────────────────────────────────────────────────────
 @bot.command(name="help")
 async def help_cmd(ctx):
     embed = discord.Embed(title="🧀 Cheesehub — Command Menu", description="Your friendly neighbourhood cheese bot!", color=0xF5C542)
     embed.add_field(name="🧀 Cheese", value="`?cheese`\n`?joke`\n`?trivia`\n`?hint`\n`?skip`", inline=False)
-    embed.add_field(name="🎮 Fun", value="`?8ball`\n`?gay`\n`?dick`\n`?roast`\n`?monkey`\n`?loop`\n`?skillcheck`\n`?locker`\n`?braincell`\n`?socialcredit`\n`?lootbox`\n`?esex`", inline=False)
+    embed.add_field(name="🎮 Fun", value="`?8ball`\n`?gay`\n`?dick`\n`?roast`\n`?monkey`\n`?loop`\n`?skillcheck`\n`?locker`\n`?braincell`\n`?rep`\n`?loot`\n`?esex`", inline=False)
     embed.add_field(name="ℹ️ Info", value="`?help`\n`?ping`", inline=False)
     embed.set_footer(text="Made with 🧀 | Cheesehub v1.0")
     await ctx.send(embed=embed)
 
 @bot.command(name="ping")
 async def ping(ctx):
-    latency = round(bot.latency * 1000)
-    await ctx.send(f"🏓 Pong! Latency: **{latency}ms**")
+    await ctx.send(f"🏓 Pong! Latency: **{round(bot.latency * 1000)}ms**")
 
 @bot.command(name="cheese")
 async def cheese_fact(ctx):
@@ -322,7 +314,7 @@ async def cheese_joke(ctx):
 @bot.command(name="trivia")
 async def trivia(ctx):
     if ctx.channel.id in active_trivia:
-        await ctx.send(f"⚠️ A trivia is already active!")
+        await ctx.send("⚠️ A trivia is already active!")
         return
     question = random.choice(TRIVIA_QUESTIONS)
     active_trivia[ctx.channel.id] = question
@@ -447,16 +439,16 @@ async def braincell(ctx, member: discord.Member = None):
     embed.set_thumbnail(url=target.display_avatar.url)
     await ctx.send(embed=embed)
 
-@bot.command(name="socialcredit")
-async def socialcredit(ctx, member: discord.Member = None):
+@bot.command(name="rep")
+async def rep(ctx, member: discord.Member = None):
     target = member or ctx.author
-    embed = discord.Embed(title="Social Credit", description=f"**{target.display_name}**", color=0xE74C3C)
+    embed = discord.Embed(title="Rep Update", description=f"**{target.display_name}**", color=0xE74C3C)
     embed.add_field(name="Update", value=random.choice(SOCIAL_EVENTS), inline=False)
     embed.set_thumbnail(url=target.display_avatar.url)
     await ctx.send(embed=embed)
 
-@bot.command(name="lootbox")
-async def lootbox(ctx):
+@bot.command(name="loot")
+async def loot(ctx):
     items = random.sample(LOOT_ITEMS, 3)
     embed = discord.Embed(title="Lootbox Opened!", description=f"**{ctx.author.display_name}**", color=0xF1C40F)
     embed.add_field(name="You received", value="\n".join(f"• {item}" for item in items), inline=False)
@@ -472,7 +464,6 @@ async def esex(ctx, member: discord.Member = None):
         return
     await ctx.send(f"🍑 **ESEX ACTIVATED** 🍑 {target.mention}\n{gif}")
 
-# ── Word Triggers ─────────────────────────────────────────────────────────────
 TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
@@ -518,7 +509,6 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-# ── Keep-alive web server ──────────────────────────────────────────────────────
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -533,7 +523,6 @@ def run_server():
 
 threading.Thread(target=run_server, daemon=True).start()
 
-# ── Run ────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     token = os.getenv("DISCORD_TOKEN")
     if not token:
