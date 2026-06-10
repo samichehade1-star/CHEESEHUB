@@ -295,16 +295,26 @@ LOOT_ITEMS = [
 
 # ── ESEX GIFs (add your own links below) ──────────────────────────────────────
 ESEX_GIFS = [
-    "https://media.tenor.com/19851949/girl-twerk-sexy.gif",
-    "https://media.tenor.com/18604949/thiccgirl-dancing.gif",
-    "https://media.tenor.com/20848429/hot-dance-thicc.gif",
-    "https://media.tenor.com/4215340120221314100/twerking-thicc.gif",
     "https://media.giphy.com/media/dcbJJQgVKSCXmGPtqO/giphy.gif",
-    "https://media.tenor.com/images/27dccec6d6fc8b7c58c049a0573c01df/tenor.gif",
     "https://media.giphy.com/media/26ufajqx7QJx4VIMo/giphy.gif",
-    "https://i.imgur.com/YWc6fJl.gif",  # sexy girl twerking
-    "https://media.tenor.com/XfrqyR_-jzIAAAAC/anime-goku.gif",  # placeholder, replace if needed
-    "https://media.tenor.com/RMgXg1XyXkkAAAAM/excited.gif",
+    "https://media.giphy.com/media/l0HlRnAWXxn0MhKLK/giphy.gif",
+    "https://media.giphy.com/media/3o7TKsQ8v0dG6b0z1C/giphy.gif",
+    "https://media.giphy.com/media/l2JJyK0Z7X5c7r7fG/giphy.gif",
+    "https://media.giphy.com/media/26tOZ42mg6s3T1J7W/giphy.gif",
+    "https://media.giphy.com/media/3oEjI5VtIhHvK37WYo/giphy.gif",
+    "https://media.giphy.com/media/l0MYt9z4pB0z1gJqM/giphy.gif",
+    "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+    "https://media.giphy.com/media/26BRv0Th6v9g6f1qM/giphy.gif",
+    "https://media.giphy.com/media/xT9IgG9v2p2s2jVq4w/giphy.gif",
+    "https://media.giphy.com/media/3o6Zt6KHx9z5z5z5z5/giphy.gif",
+    "https://media.giphy.com/media/l41lI3Z8V4z5z5z5/giphy.gif",
+    "https://media.giphy.com/media/3o7aDgf2z8z5z5z5z5/giphy.gif",
+    "https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif",
+    "https://media.giphy.com/media/l0IylOPCNk9n0MhKL/giphy.gif",
+    "https://media.giphy.com/media/3oEjHA7z5v5z5z5z5/giphy.gif",
+    "https://media.giphy.com/media/26xBwdIuRJiAIy1l6/giphy.gif",
+    "https://media.giphy.com/media/l2JehQ2GitHGdVG9W/giphy.gif",
+    "https://media.giphy.com/media/3o6fJ5z5z5z5z5z5/giphy.gif",
 ]
 
 # ── Events ─────────────────────────────────────────────────────────────────────
