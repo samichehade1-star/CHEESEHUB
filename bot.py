@@ -470,8 +470,7 @@ async def esex(ctx, member: discord.Member = None):
     if not gif:
         await ctx.send("No GIFs loaded yet!")
         return
-    await ctx.send(f"🍑 **ESEX ACTIVATED** 🍑\n{target.mention} here's something nice for you~ 🔥")
-    await ctx.send(gif)
+    await ctx.send(f"🍑 **ESEX ACTIVATED** 🍑 {target.mention}\n{gif}")
 
 # ── Word Triggers ─────────────────────────────────────────────────────────────
 TRIGGER_WORDS_1 = ["nigga", "nigger"]
