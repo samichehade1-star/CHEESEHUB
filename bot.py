@@ -268,7 +268,6 @@ ESEX_GIFS = [
     "https://i.imgur.com/p56qVYb.gif",
     "https://i.imgur.com/BVMuWP2.gif",
     "https://i.imgur.com/fEs1vzM.gif",
-    "https://i.imgur.com/s6jCmIc.gif",
 ]
 
 def get_random_esex():
