@@ -293,6 +293,20 @@ LOOT_ITEMS = [
     "Bag of Wet Fries",
 ]
 
+# ── ESEX GIFs (add your own links below) ──────────────────────────────────────
+ESEX_GIFS = [
+    "https://media.tenor.com/19851949/girl-twerk-sexy.gif",
+    "https://media.tenor.com/18604949/thiccgirl-dancing.gif",
+    "https://media.tenor.com/20848429/hot-dance-thicc.gif",
+    "https://media.tenor.com/4215340120221314100/twerking-thicc.gif",
+    "https://media.giphy.com/media/dcbJJQgVKSCXmGPtqO/giphy.gif",
+    "https://media.tenor.com/images/27dccec6d6fc8b7c58c049a0573c01df/tenor.gif",
+    "https://media.giphy.com/media/26ufajqx7QJx4VIMo/giphy.gif",
+    "https://i.imgur.com/YWc6fJl.gif",  # sexy girl twerking
+    "https://media.tenor.com/XfrqyR_-jzIAAAAC/anime-goku.gif",  # placeholder, replace if needed
+    "https://media.tenor.com/RMgXg1XyXkkAAAAM/excited.gif",
+]
+
 # ── Events ─────────────────────────────────────────────────────────────────────
 @bot.event
 async def on_ready():
@@ -581,6 +595,15 @@ async def lootbox(ctx):
     embed = discord.Embed(title="Lootbox Opened!", description=f"**{ctx.author.display_name}** opened a lootbox...", color=0xF1C40F)
     embed.add_field(name="You received", value="\n".join(f"• {item}" for item in items), inline=False)
     await ctx.send(embed=embed)
+
+
+@bot.command(name="esex")
+async def esex(ctx):
+    if not ESEX_GIFS:
+        await ctx.send("No GIFs loaded yet!")
+        return
+    gif = random.choice(ESEX_GIFS)
+    await ctx.send(gif)
 
 
 # ── Word Trigger (fill in your own response!) ─────────────────────────────────
