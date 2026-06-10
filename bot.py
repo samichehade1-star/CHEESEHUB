@@ -38,36 +38,11 @@ CHEESE_JOKES = [
 ]
 
 TRIVIA_QUESTIONS = [
-    {
-        "q": "What country produces the most cheese in the world?",
-        "a": "united states",
-        "hint": "🇺🇸 Think big and western...",
-        "fact": "The US produces over 6 million metric tons of cheese per year!",
-    },
-    {
-        "q": "What type of milk is Roquefort cheese traditionally made from?",
-        "a": "sheep",
-        "hint": "🐑 Not cow, not goat...",
-        "fact": "Roquefort is one of the world's oldest cheeses, aged in the caves of Combalou.",
-    },
-    {
-        "q": "In what country did Gouda cheese originate?",
-        "a": "netherlands",
-        "hint": "🌷 Famous for windmills and tulips...",
-        "fact": "Gouda has been traded at the Gouda market since the 14th century!",
-    },
-    {
-        "q": "What gives blue cheese its distinctive colour?",
-        "a": "mold",
-        "hint": "🔵 It's a living organism...",
-        "fact": "Penicillium roqueforti is the mould used — related to the antibiotic penicillin!",
-    },
-    {
-        "q": "How many litres of milk does it take to make 1kg of hard cheese (approx)?",
-        "a": "10",
-        "hint": "🥛 It's a double-digit number...",
-        "fact": "The exact amount varies by cheese type, but hard cheeses need the most milk.",
-    },
+    {"q": "What country produces the most cheese in the world?", "a": "united states", "hint": "🇺🇸 Think big and western...", "fact": "The US produces over 6 million metric tons of cheese per year!"},
+    {"q": "What type of milk is Roquefort cheese traditionally made from?", "a": "sheep", "hint": "🐑 Not cow, not goat...", "fact": "Roquefort is one of the world's oldest cheeses, aged in the caves of Combalou."},
+    {"q": "In what country did Gouda cheese originate?", "a": "netherlands", "hint": "🌷 Famous for windmills and tulips...", "fact": "Gouda has been traded at the Gouda market since the 14th century!"},
+    {"q": "What gives blue cheese its distinctive colour?", "a": "mold", "hint": "🔵 It's a living organism...", "fact": "Penicillium roqueforti is the mould used — related to the antibiotic penicillin!"},
+    {"q": "How many litres of milk does it take to make 1kg of hard cheese (approx)?", "a": "10", "hint": "🥛 It's a double-digit number...", "fact": "The exact amount varies by cheese type, but hard cheeses need the most milk."},
 ]
 
 active_trivia: dict[int, dict] = {}
@@ -93,7 +68,6 @@ GAY_MESSAGES = [
     (range(100, 101), "100%! Certified gay icon. Pack it up, Elton John."),
 ]
 
-# ── DBD & Fun Data ─────────────────────────────────────────────────────────────
 MONKEY_ABILITIES = [
     "Throws bananas with deadly accuracy.",
     "Can smell fried chicken and bananas from 3 miles away.",
@@ -269,7 +243,6 @@ LOOT_ITEMS = [
     "Bag of Wet Fries",
 ]
 
-# ── ESEX GIFs (Tenor - Sexy / Thicc / Ahegao) ─────────────────────────────────
 ESEX_GIFS = [
     "https://media.tenor.com/26027474/ahegao-delfine-bell.gif",
     "https://media.tenor.com/15863036/sexy-girl-twerk-sexy-girl-twerk-twerking-gif.gif",
@@ -281,13 +254,6 @@ ESEX_GIFS = [
     "https://media.tenor.com/21124784/bee-girl-twerk-gif.gif",
     "https://media.tenor.com/12952373064437539905/twerk-twerking-girl-twerk-girl-twerking-girl-booty-gif.gif",
     "https://media.tenor.com/12761440296533616720/bunger-twerk-anime-girl-woman-weezer-gif.gif",
-    "https://media.tenor.com/3o7TKsQ8v0dG6b0z1C/giphy.gif",  # fallback
-    "https://media.tenor.com/l2JJyK0Z7X5c7r7fG/giphy.gif",
-    "https://media.tenor.com/26ufajqx7QJx4VIMo/giphy.gif",
-    "https://media.tenor.com/5GoVLqeAOo6PK/giphy.gif",
-    "https://media.tenor.com/l0HlRnAWXxn0MhKLK/giphy.gif",
-    "https://media.tenor.com/26tOZ42mg6s3T1J7W/giphy.gif",
-    "https://media.tenor.com/3oEjI5VtIhHvK37WYo/giphy.gif",
 ]
 
 def get_random_esex():
@@ -295,13 +261,7 @@ def get_random_esex():
         return None
     return random.choice(ESEX_GIFS)
 
-# ── Events ─────────────────────────────────────────────────────────────────────
-@bot.event
-async def on_ready():
-    print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
-    await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
-    keep_alive.start()
-
+# ── Keep-alive task (defined before on_ready) ──────────────────────────────────
 @tasks.loop(minutes=5)
 async def keep_alive():
     try:
@@ -310,48 +270,20 @@ async def keep_alive():
     except Exception:
         pass
 
+# ── Events ─────────────────────────────────────────────────────────────────────
+@bot.event
+async def on_ready():
+    print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
+    await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
+    keep_alive.start()
+
 # ── Commands ───────────────────────────────────────────────────────────────────
 @bot.command(name="help")
 async def help_cmd(ctx):
-    embed = discord.Embed(
-        title="🧀 Cheesehub — Command Menu",
-        description="Your friendly neighbourhood cheese bot!",
-        color=0xF5C542,
-    )
-    embed.add_field(
-        name="🧀 Cheese",
-        value=(
-            "`?cheese` — Random cheese fact\n"
-            "`?joke` — Cheesy joke\n"
-            "`?trivia` — Start a cheese trivia question\n"
-            "`?hint` — Get a hint for the active trivia\n"
-            "`?skip` — Skip the current trivia question"
-        ),
-        inline=False,
-    )
-    embed.add_field(
-        name="🎮 Fun",
-        value=(
-            "`?8ball <question>` — Ask the magic 8-ball\n"
-            "`?gay [@user]` — Check someone's gay %\n"
-            "`?dick [@user]` — Dick meter\n"
-            "`?roast [@user]` — Roast someone\n"
-            "`?monkey [@user]` — Monkey rating\n"
-            "`?loop [@user]` — DBD loop outcome\n"
-            "`?skillcheck [@user]` — DBD skill check\n"
-            "`?locker [@user]` — DBD locker event\n"
-            "`?braincell [@user]` — Brain cell count\n"
-            "`?socialcredit [@user]` — Social credit\n"
-            "`?lootbox` — Open a lootbox\n"
-            "`?esex [@user]` — Random sexy e-girl GIF 🔥"
-        ),
-        inline=False,
-    )
-    embed.add_field(
-        name="ℹ️ Info",
-        value="`?help` — Show this menu\n`?ping` — Check bot latency",
-        inline=False,
-    )
+    embed = discord.Embed(title="🧀 Cheesehub — Command Menu", description="Your friendly neighbourhood cheese bot!", color=0xF5C542)
+    embed.add_field(name="🧀 Cheese", value="`?cheese`\n`?joke`\n`?trivia`\n`?hint`\n`?skip`", inline=False)
+    embed.add_field(name="🎮 Fun", value="`?8ball`\n`?gay`\n`?dick`\n`?roast`\n`?monkey`\n`?loop`\n`?skillcheck`\n`?locker`\n`?braincell`\n`?socialcredit`\n`?lootbox`\n`?esex`", inline=False)
+    embed.add_field(name="ℹ️ Info", value="`?help`\n`?ping`", inline=False)
     embed.set_footer(text="Made with 🧀 | Cheesehub v1.0")
     await ctx.send(embed=embed)
 
@@ -360,7 +292,65 @@ async def ping(ctx):
     latency = round(bot.latency * 1000)
     await ctx.send(f"🏓 Pong! Latency: **{latency}ms**")
 
-# (All other commands like cheese, joke, trivia, 8ball, gay, dick, roast, monkey, loop, skillcheck, locker, braincell, socialcredit, lootbox are kept exactly as original)
+@bot.command(name="cheese")
+async def cheese_fact(ctx):
+    embed = discord.Embed(title="🧀 Cheese Fact!", description=random.choice(CHEESE_FACTS), color=0xF5C542)
+    await ctx.send(embed=embed)
+
+@bot.command(name="joke")
+async def cheese_joke(ctx):
+    setup, punchline = random.choice(CHEESE_JOKES)
+    embed = discord.Embed(title="😄 Cheesy Joke", color=0xF5C542)
+    embed.add_field(name="❓", value=setup, inline=False)
+    embed.add_field(name="💬", value=f"||{punchline}||", inline=False)
+    await ctx.send(embed=embed)
+
+@bot.command(name="trivia")
+async def trivia(ctx):
+    if ctx.channel.id in active_trivia:
+        await ctx.send(f"⚠️ A trivia is already active!")
+        return
+    question = random.choice(TRIVIA_QUESTIONS)
+    active_trivia[ctx.channel.id] = question
+    embed = discord.Embed(title="🧀 Cheese Trivia!", description=question["q"], color=0xF5A600)
+    await ctx.send(embed=embed)
+
+@bot.command(name="hint")
+async def hint(ctx):
+    if ctx.channel.id not in active_trivia:
+        await ctx.send("❌ No active trivia!")
+        return
+    await ctx.send(f"💡 **Hint:** {active_trivia[ctx.channel.id]['hint']}")
+
+@bot.command(name="skip")
+async def skip(ctx):
+    if ctx.channel.id not in active_trivia:
+        await ctx.send("❌ No active trivia!")
+        return
+    answer = active_trivia.pop(ctx.channel.id)["a"]
+    await ctx.send(f"⏭️ Skipped! Answer was **{answer.title()}**.")
+
+@bot.command(name="8ball")
+async def eightball(ctx, *, question: str = None):
+    if not question:
+        await ctx.send("❓ Ask a question!")
+        return
+    emoji, response = random.choice(EIGHTBALL_RESPONSES)
+    embed = discord.Embed(title="🎱 Magic 8-Ball", color=0x2B2D31)
+    embed.add_field(name="Question", value=question, inline=False)
+    embed.add_field(name=f"{emoji} Answer", value=response, inline=False)
+    await ctx.send(embed=embed)
+
+@bot.command(name="gay")
+async def gay(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    value = random.randint(0, 100)
+    message = next((msg for r, msg in GAY_MESSAGES if value in r), "100% Gay Icon")
+    embed = discord.Embed(title="Gay Meter", description=f"**{target.display_name}**", color=0xFF69B4)
+    embed.add_field(name="Result", value=f"**{value}%**", inline=False)
+    embed.add_field(name="Verdict", value=message, inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
 
 @bot.command(name="dick")
 async def dick(ctx, member: discord.Member = None):
@@ -378,16 +368,85 @@ async def dick(ctx, member: discord.Member = None):
         message = "Watermellon person"
     else:
         message = "Tell me you like KFC without telling me you like KFC"
-
     bar = "()" if value == 0 else "8" + "=" * value + "D"
-
-    embed = discord.Embed(title="📏 Dick Meter", color=0x5865F2)
+    embed = discord.Embed(title="Dick Meter", color=0x5865F2)
     embed.add_field(name=target.display_name, value=f"`{bar}` **{value} inches**", inline=False)
     embed.add_field(name="Verdict", value=message, inline=False)
     embed.set_thumbnail(url=target.display_avatar.url)
     await ctx.send(embed=embed)
 
-# ... (paste your other commands here if needed, but they are already in the file)
+@bot.command(name="roast")
+async def roast(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    roasts = [
+        "You look like you use Furry or Milkygay",
+        "I'm sorry your mom never put your artwork on the wall as a kid.",
+        "Your logic would lose to a Magic 8 Ball.",
+        "You built like a windshield wiper.",
+        "You remind me of Sora",
+    ]
+    embed = discord.Embed(title="🔥 Roasted!", description=f"{target.mention} {random.choice(roasts)}", color=0xE74C3C)
+    await ctx.send(embed=embed)
+
+@bot.command(name="monkey")
+async def monkey(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    embed = discord.Embed(title="Monkey Rating", description=f"**{target.display_name}**", color=0x8B4513)
+    embed.add_field(name="Rank", value=random.choice(MONKEY_RANKS), inline=False)
+    embed.add_field(name="Ability", value=random.choice(MONKEY_ABILITIES), inline=False)
+    embed.add_field(name="Status", value=random.choice(MONKEY_STATUS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="loop")
+async def loop(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    win = random.choice([True, False])
+    outcome = random.choice(LOOP_WINS) if win else random.choice(LOOP_FAILS)
+    embed = discord.Embed(title="Loop Simulator", description=f"**{target.display_name}**", color=0x2ECC71 if win else 0xE74C3C)
+    embed.add_field(name="Outcome", value=outcome, inline=False)
+    embed.add_field(name="Reward", value=random.choice(LOOP_REWARDS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="skillcheck")
+async def skillcheck(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    embed = discord.Embed(title="Skill Check!", description=f"**{target.display_name}**", color=0xF39C12)
+    embed.add_field(name="Result", value=random.choice(SKILL_CHECKS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="locker")
+async def locker(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    embed = discord.Embed(title="Locker Event", description=f"**{target.display_name}**", color=0x3498DB)
+    embed.add_field(name="Event", value=random.choice(LOCKER_EVENTS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="braincell")
+async def braincell(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    embed = discord.Embed(title="Brain Cell Scan", description=f"**{target.display_name}**", color=0x9B59B6)
+    embed.add_field(name="Result", value=random.choice(BRAIN_RESULTS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="socialcredit")
+async def socialcredit(ctx, member: discord.Member = None):
+    target = member or ctx.author
+    embed = discord.Embed(title="Social Credit", description=f"**{target.display_name}**", color=0xE74C3C)
+    embed.add_field(name="Update", value=random.choice(SOCIAL_EVENTS), inline=False)
+    embed.set_thumbnail(url=target.display_avatar.url)
+    await ctx.send(embed=embed)
+
+@bot.command(name="lootbox")
+async def lootbox(ctx):
+    items = random.sample(LOOT_ITEMS, 3)
+    embed = discord.Embed(title="Lootbox Opened!", description=f"**{ctx.author.display_name}**", color=0xF1C40F)
+    embed.add_field(name="You received", value="\n".join(f"• {item}" for item in items), inline=False)
+    await ctx.send(embed=embed)
 
 @bot.command(name="esex")
 @commands.cooldown(1, 8, commands.BucketType.user)
@@ -400,7 +459,7 @@ async def esex(ctx, member: discord.Member = None):
     await ctx.send(f"🍑 **ESEX ACTIVATED** 🍑\n{target.mention} here's something nice for you~ 🔥")
     await ctx.send(gif)
 
-# ── Word Trigger ───────────────────────────────────────────────────────────────
+# ── Word Triggers ─────────────────────────────────────────────────────────────
 TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
@@ -427,8 +486,43 @@ async def on_message(message):
             await message.delete()
         except discord.Forbidden:
             pass
-        embed = discord.Embed(
-            description=f"{message.author.mention} {TRIGGER_RESPONSE_3}",
-            color=0xFF0000,
-        )
-        embed.set_image(url="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOEME9M9cSy9FvfHvcx2gMPkp1H5Dj4YaKufPRsAyon8Tf
+        embed = discord.Embed(description=f"{message.author.mention} {TRIGGER_RESPONSE_3}", color=0xFF0000)
+        embed.set_image(url="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTdndTRiZzJpNXc4YnBwancwZ2hxdmF4dTBkNWtrdWJyZ2wzd2FnMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IUkDQZP2AJyxU3cXBn/giphy.gif")
+        await message.channel.send(embed=embed)
+        embed2 = discord.Embed(color=0xFF0000)
+        embed2.set_image(url="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXRnemhja3NmbXd5aDQ0MnFhcm9lMW1jeGZ5NWlxYnJvazg2bTVpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CWsz3htAnOa4ScUHyE/giphy.gif")
+        await message.channel.send(embed=embed2)
+
+    if message.channel.id in active_trivia:
+        question = active_trivia[message.channel.id]
+        if message.content.strip().lower() == question["a"].lower():
+            fact = question["fact"]
+            del active_trivia[message.channel.id]
+            embed = discord.Embed(title="✅ Correct!", description=f"Well done, {message.author.mention}! 🎉", color=0x57F287)
+            embed.add_field(name="📖 Fun fact", value=fact, inline=False)
+            await message.channel.send(embed=embed)
+            return
+
+    await bot.process_commands(message)
+
+# ── Keep-alive web server ──────────────────────────────────────────────────────
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    def log_message(self, format, *args):
+        pass
+
+def run_server():
+    server = HTTPServer(("0.0.0.0", 8080), HealthHandler)
+    server.serve_forever()
+
+threading.Thread(target=run_server, daemon=True).start()
+
+# ── Run ────────────────────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        raise ValueError("DISCORD_TOKEN environment variable not set!")
+    bot.run(token)
