@@ -468,7 +468,7 @@ TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
 TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "explot", "cheater", "hacker", "hackers", "cheaters"]
-TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed monkey. Its just reshade powered by the great Visneya.xyz & Nyxia.cc\n\nPS: You Jubtas?"
+TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed monkey. Its just reshade powered by the great Visenya.xyz & Nyxia.cc\n\nPS: You Jubtas?"
 TRIGGER_RESPONSE_2A = "Its just cheese\n\nPS: You Jubtas?"
 
 TRIGGER_WORDS_3 = ["prophet", "trollingprophet", "godessKay", "godess kay", "kib", "kids in basement", "godess", "kay", "gorlock", "megathron"]
