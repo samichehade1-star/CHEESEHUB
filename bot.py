@@ -588,7 +588,7 @@ async def lootbox(ctx):
 TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
-TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "exploit", "cheater", "hacker", "hackers", "cheaters"]
+TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "explot", "cheater", "hacker", "hackers", "cheaters"]
 TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed **MONKEY** 🐒\nIts just reshade powered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You Jubtas?"
 TRIGGER_RESPONSE_2A = "Its just cheese 🧀\nPowered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You Jubtas?"
 
