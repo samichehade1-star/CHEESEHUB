@@ -499,7 +499,7 @@ async def diddy(ctx, *, message: str = None):
                     "https://api.groq.com/openai/v1/chat/completions",
                     headers={"Authorization": f"Bearer {groq_key}", "Content-Type": "application/json"},
                     json={
-                        "model": "llama3-8b-8192",
+                        "model": "llama-3.3-70b-versatile",
                         "messages": [{"role": "system", "content": DIDDY_SYSTEM_PROMPT}] + history,
                         "max_tokens": 150,
                         "temperature": 0.9,
