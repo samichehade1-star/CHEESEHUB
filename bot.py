@@ -299,73 +299,89 @@ async def keep_alive():
 
 @bot.event
 async def on_ready():
-    print(f"✅ Cheesehub is online as {bot.user} (ID: {bot.user.id})")
-    await bot.change_presence(activity=discord.Game(name="?help | Serving cheese 🧀"))
+    print(f"Cheesehub is online as {bot.user} (ID: {bot.user.id})")
+    await bot.change_presence(activity=discord.Game(name="?help | Serving cheese"))
     keep_alive.start()
 
+# ── Global cooldown error handler ──────────────────────────────────────────────
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(f"Slow down! Try again in **{error.retry_after:.1f}s**.")
+
+# ── Commands ───────────────────────────────────────────────────────────────────
 @bot.command(name="help")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def help_cmd(ctx):
-    embed = discord.Embed(title="🧀 Cheesehub — Command Menu", description="Your friendly neighbourhood cheese bot!", color=0xF5C542)
-    embed.add_field(name="🧀 Cheese", value="`?cheese`\n`?joke`\n`?trivia`\n`?hint`\n`?skip`", inline=False)
-    embed.add_field(name="🎮 Fun", value="`?8ball`\n`?gay`\n`?dick`\n`?roast`\n`?monkey`\n`?loop`\n`?skillcheck`\n`?braincell`\n`?rep`\n`?loot`\n`?esex`\n`?diddy`\n`?diddystop`", inline=False)
-    embed.add_field(name="ℹ️ Info", value="`?help`\n`?ping`", inline=False)
-    embed.set_footer(text="Made with 🧀 | Cheesehub v1.0")
+    embed = discord.Embed(title="Cheesehub Command Menu", description="Your friendly neighbourhood cheese bot!", color=0xF5C542)
+    embed.add_field(name="Cheese", value="`?cheese`\n`?joke`\n`?trivia`\n`?hint`\n`?skip`", inline=False)
+    embed.add_field(name="Fun", value="`?8ball`\n`?gay`\n`?dick`\n`?roast`\n`?monkey`\n`?loop`\n`?skillcheck`\n`?braincell`\n`?rep`\n`?loot`\n`?esex`\n`?diddy`\n`?diddystop`", inline=False)
+    embed.add_field(name="Info", value="`?help`\n`?ping`", inline=False)
+    embed.set_footer(text="Made with cheese | Cheesehub v1.0")
     await ctx.send(embed=embed)
 
 @bot.command(name="ping")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def ping(ctx):
-    await ctx.send(f"🏓 Pong! Latency: **{round(bot.latency * 1000)}ms**")
+    await ctx.send(f"Pong! Latency: **{round(bot.latency * 1000)}ms**")
 
 @bot.command(name="cheese")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def cheese_fact(ctx):
-    embed = discord.Embed(title="🧀 Cheese Fact!", description=random.choice(CHEESE_FACTS), color=0xF5C542)
+    embed = discord.Embed(title="Cheese Fact!", description=random.choice(CHEESE_FACTS), color=0xF5C542)
     await ctx.send(embed=embed)
 
 @bot.command(name="joke")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def cheese_joke(ctx):
     setup, punchline = random.choice(CHEESE_JOKES)
-    embed = discord.Embed(title="😄 Cheesy Joke", color=0xF5C542)
-    embed.add_field(name="❓", value=setup, inline=False)
-    embed.add_field(name="💬", value=f"||{punchline}||", inline=False)
+    embed = discord.Embed(title="Cheesy Joke", color=0xF5C542)
+    embed.add_field(name="Q", value=setup, inline=False)
+    embed.add_field(name="A", value=f"||{punchline}||", inline=False)
     await ctx.send(embed=embed)
 
 @bot.command(name="trivia")
+@commands.cooldown(1, 10, commands.BucketType.channel)
 async def trivia(ctx):
     if ctx.channel.id in active_trivia:
-        await ctx.send("⚠️ A trivia is already active!")
+        await ctx.send("A trivia is already active!")
         return
     question = random.choice(TRIVIA_QUESTIONS)
     active_trivia[ctx.channel.id] = question
-    embed = discord.Embed(title="🧀 Cheese Trivia!", description=question["q"], color=0xF5A600)
+    embed = discord.Embed(title="Cheese Trivia!", description=question["q"], color=0xF5A600)
     await ctx.send(embed=embed)
 
 @bot.command(name="hint")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def hint(ctx):
     if ctx.channel.id not in active_trivia:
-        await ctx.send("❌ No active trivia!")
+        await ctx.send("No active trivia!")
         return
-    await ctx.send(f"💡 **Hint:** {active_trivia[ctx.channel.id]['hint']}")
+    await ctx.send(f"Hint: {active_trivia[ctx.channel.id]['hint']}")
 
 @bot.command(name="skip")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def skip(ctx):
     if ctx.channel.id not in active_trivia:
-        await ctx.send("❌ No active trivia!")
+        await ctx.send("No active trivia!")
         return
     answer = active_trivia.pop(ctx.channel.id)["a"]
-    await ctx.send(f"⏭️ Skipped! Answer was **{answer.title()}**.")
+    await ctx.send(f"Skipped! Answer was **{answer.title()}**.")
 
 @bot.command(name="8ball")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def eightball(ctx, *, question: str = None):
     if not question:
-        await ctx.send("❓ Ask a question!")
+        await ctx.send("Ask a question!")
         return
     emoji, response = random.choice(EIGHTBALL_RESPONSES)
-    embed = discord.Embed(title="🎱 Magic 8-Ball", color=0x2B2D31)
+    embed = discord.Embed(title="Magic 8-Ball", color=0x2B2D31)
     embed.add_field(name="Question", value=question, inline=False)
     embed.add_field(name=f"{emoji} Answer", value=response, inline=False)
     await ctx.send(embed=embed)
 
 @bot.command(name="gay")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def gay(ctx, member: discord.Member = None):
     target = member or ctx.author
     value = random.randint(0, 100)
@@ -377,6 +393,7 @@ async def gay(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="dick")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def dick(ctx, member: discord.Member = None):
     target = member or ctx.author
     value = random.randint(0, 8)
@@ -400,6 +417,7 @@ async def dick(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="roast")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def roast(ctx, member: discord.Member = None):
     target = member or ctx.author
     roasts = [
@@ -409,10 +427,11 @@ async def roast(ctx, member: discord.Member = None):
         "You built like a windshield wiper.",
         "You remind me of Sora",
     ]
-    embed = discord.Embed(title="🔥 Roasted!", description=f"{target.mention} {random.choice(roasts)}", color=0xE74C3C)
+    embed = discord.Embed(title="Roasted!", description=f"{target.mention} {random.choice(roasts)}", color=0xE74C3C)
     await ctx.send(embed=embed)
 
 @bot.command(name="monkey")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def monkey(ctx, member: discord.Member = None):
     target = member or ctx.author
     embed = discord.Embed(title="Monkey Rating", description=f"**{target.display_name}**", color=0x8B4513)
@@ -423,6 +442,7 @@ async def monkey(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="loop")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def loop(ctx, member: discord.Member = None):
     target = member or ctx.author
     win = random.choice([True, False])
@@ -434,6 +454,7 @@ async def loop(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="skillcheck")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def skillcheck(ctx, member: discord.Member = None):
     target = member or ctx.author
     embed = discord.Embed(title="Skill Check!", description=f"**{target.display_name}**", color=0xF39C12)
@@ -442,6 +463,7 @@ async def skillcheck(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="braincell")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def braincell(ctx, member: discord.Member = None):
     target = member or ctx.author
     embed = discord.Embed(title="Brain Cell Scan", description=f"**{target.display_name}**", color=0x9B59B6)
@@ -450,6 +472,7 @@ async def braincell(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="rep")
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def rep(ctx, member: discord.Member = None):
     target = member or ctx.author
     embed = discord.Embed(title="Rep Update", description=f"**{target.display_name}**", color=0xE74C3C)
@@ -458,6 +481,7 @@ async def rep(ctx, member: discord.Member = None):
     await ctx.send(embed=embed)
 
 @bot.command(name="loot")
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def loot(ctx):
     items = random.sample(LOOT_ITEMS, 3)
     embed = discord.Embed(title="Lootbox Opened!", description=f"**{ctx.author.display_name}**", color=0xF1C40F)
@@ -465,21 +489,21 @@ async def loot(ctx):
     await ctx.send(embed=embed)
 
 @bot.command(name="esex")
-@commands.cooldown(1, 8, commands.BucketType.user)
+@commands.cooldown(1, 15, commands.BucketType.user)
 async def esex(ctx, member: discord.Member = None):
     target = member or ctx.author
     gif = get_random_esex()
     if not gif:
         await ctx.send("No GIFs loaded yet!")
         return
-    await ctx.send(f"🍑 **ESEX ACTIVATED** 🍑 {target.mention}\n{gif}")
+    await ctx.send(f"ESEX ACTIVATED {target.mention}\n{gif}")
 
 @bot.command(name="diddy")
-@commands.cooldown(1, 5, commands.BucketType.user)
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def diddy(ctx, *, message: str = None):
     groq_key = os.getenv("GROQ_API_KEY")
     if not groq_key:
-        await ctx.send("❌ Groq API key not set!")
+        await ctx.send("Groq API key not set!")
         return
     user_id = ctx.author.id
     if user_id not in diddy_sessions:
@@ -507,21 +531,21 @@ async def diddy(ctx, *, message: str = None):
                 ) as resp:
                     data = await resp.json()
                     if "choices" not in data:
-                        await ctx.send(f"❌ Groq error: {data.get('error', {}).get('message', str(data))}")
+                        await ctx.send(f"Groq error: {data.get('error', {}).get('message', str(data))}")
                         return
                     reply = data["choices"][0]["message"]["content"]
                     diddy_sessions[user_id].append({"role": "assistant", "content": reply})
                     embed = discord.Embed(description=f"📞 **Diddy:** {reply}", color=0x1a1a2e)
-                    embed.set_footer(text=f"?diddy <message> to reply | ?diddystop to end")
+                    embed.set_footer(text="?diddy <message> to reply | ?diddystop to end")
                     await ctx.send(embed=embed)
         except Exception as e:
-            await ctx.send(f"❌ Diddy couldn't connect: {e}")
+            await ctx.send(f"Diddy couldn't connect: {e}")
 
 @bot.command(name="diddystop")
 async def diddystop(ctx):
     if ctx.author.id in diddy_sessions:
         del diddy_sessions[ctx.author.id]
-        await ctx.send("📵 Diddy hung up. Stay safe out there.")
+        await ctx.send("Diddy hung up. Stay safe out there.")
     else:
         await ctx.send("You weren't even on a call with Diddy.")
 
@@ -559,8 +583,8 @@ async def on_message(message):
         if message.content.strip().lower() == question["a"].lower():
             fact = question["fact"]
             del active_trivia[message.channel.id]
-            embed = discord.Embed(title="✅ Correct!", description=f"Well done, {message.author.mention}! 🎉", color=0x57F287)
-            embed.add_field(name="📖 Fun fact", value=fact, inline=False)
+            embed = discord.Embed(title="Correct!", description=f"Well done, {message.author.mention}!", color=0x57F287)
+            embed.add_field(name="Fun fact", value=fact, inline=False)
             await message.channel.send(embed=embed)
             return
     await bot.process_commands(message)
