@@ -506,6 +506,9 @@ async def diddy(ctx, *, message: str = None):
                     },
                 ) as resp:
                     data = await resp.json()
+                    if "choices" not in data:
+                        await ctx.send(f"❌ Groq error: {data.get('error', {}).get('message', str(data))}")
+                        return
                     reply = data["choices"][0]["message"]["content"]
                     diddy_sessions[user_id].append({"role": "assistant", "content": reply})
                     embed = discord.Embed(description=f"📞 **Diddy:** {reply}", color=0x1a1a2e)
@@ -526,8 +529,8 @@ TRIGGER_WORDS_1 = ["nigga", "nigger"]
 TRIGGER_RESPONSE = "Who you calling a Nigga. I'll show you a real Nigga"
 
 TRIGGER_WORDS_2 = ["cheats", "hacks", "cheat", "hack", "explot", "cheater", "hacker", "hackers", "cheaters"]
-TRIGGER_RESPONSE_2 = "Its just a game why are you so pressed **MONKEY** 🐒\nIts just reshade powered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You Jubtas?"
-TRIGGER_RESPONSE_2A = "Its just cheese 🧀\nPowered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You Jubtas?"
+TRIGGER_RESPONSE_2 = "It's just a game, why are you so pressed **MONKEY** 🐒\nIt's just reshade powered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You Jubtas?"
+TRIGGER_RESPONSE_2A = "It's just cheese 🧀\nPowered by the great\n## NYXIA 🔓 DBD Unlocker, Pak Bypass & Woofer\nhttps://nyxia.cc/\n## VISENYA 🧀 DBD Cheese & Woofer\nhttps://visenya.xyz/\n\nPS: You **JUBTAS?**"
 
 TRIGGER_WORDS_3 = ["prophet", "trollingprophet", "godessKay", "godess kay", "kib", "kids in basement", "godess", "kay", "gorlock", "megathron"]
 TRIGGER_RESPONSE_3 = "Fake Christian, Schizophrenia Alert 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨"
