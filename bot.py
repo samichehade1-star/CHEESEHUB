@@ -293,7 +293,7 @@ def get_random_esex():
 async def keep_alive():
     try:
         async with aiohttp.ClientSession() as session:
-            await session.get("https://cheesehub.onrender.com")
+            await session.get("https://cheesehub-a7ol.onrender.com")
     except Exception:
         pass
 
